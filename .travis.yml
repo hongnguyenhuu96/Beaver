@@ -18,8 +18,7 @@ go:
   - master
 
 env:
-  - GO111MODULE=on
-  - GIN_MODE=release
+  - GO111MODULE=on GIN_MODE=release
 
 install: true
 
