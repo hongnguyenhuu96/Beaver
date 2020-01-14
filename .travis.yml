@@ -14,10 +14,12 @@ go:
   - 1.10.x
   - 1.11.x
   - 1.12.x
+  - 1.13.x
   - master
 
 env:
   - GO111MODULE=on
+  - GIN_MODE=release
 
 install: true
 
@@ -31,10 +33,10 @@ script:
   - mv Clivern/Beaver Clivern/beaver
   - mv Clivern clivern
   - cd clivern/beaver
-  - mv config.travis.yml config.test.yml
   # Config & execute ci tasks
   - make install_revive
-  - cp config.yml config.dist.yml
+  - cp config.travis.yml config.test.yml
+  - cp config.travis.yml config.dist.yml
   - make ci
   # Workaround to clear any package used for testing only
   - git status
@@ -56,6 +58,5 @@ deploy:
   script: curl -sL http://git.io/goreleaser | bash
   on:
     tags: true
-    go: 1.12.x
+    go: 1.13.x
     condition: $TRAVIS_OS_NAME = linux
-    
